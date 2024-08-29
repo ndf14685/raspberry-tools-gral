@@ -4,20 +4,33 @@
 sudo apt update && sudo apt upgrade -y
 
 # Instalar Docker
-sudo apt install -y docker-ce
+#sudo apt install -y docker-ce
+#sudo usermod -aG docker $USER
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo usermod -aG docker $USER
 
+
 # Instalar Docker Compose (Método recomendado por qbee.io)
-DOCKER_COMPOSE_VERSION=2.20.2  # Usa la versión estable más reciente disponible en qbee.io
+#DOCKER_COMPOSE_VERSION=2.29.2  #Ultima version disponible
 sudo apt install -y libffi-dev libssl-dev
 sudo apt install -y python3 python3-pip
-sudo pip3 install docker-compose=="$DOCKER_COMPOSE_VERSION"
+sudo pip3 install docker-compose
 
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.2/docker-compose-linux-aarch64" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+#sudo apt-get update
+sudo apt-get install docker-compose-plugin
+echo "La forma de correrlo es: "
+echo " sudo docker compose up -d "
 # Verificar la instalación de Docker Compose
 if ! command -v docker-compose &> /dev/null; then
     echo "Docker Compose no se pudo instalar correctamente."
     exit 1
 fi
+
+docker compose version
 
 # Instalar Python (última versión)
 sudo apt install -y python3 python3-pip
