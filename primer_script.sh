@@ -4,6 +4,11 @@
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y curl gnupg apt-transport-https software-properties-common
 
+
+#Libreria 
+wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp-dev_2.5.5-1+b1_armhf.deb
+
+
 # Agregar repositorio de Docker
 #curl -fsSL https://download.docker.com/linux/raspbian/gpg | sudo apt-key add -
 #echo "deb [arch=armhf] https://download.docker.com/linux/raspbian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list

@@ -10,6 +10,16 @@ sudo apt update && sudo apt upgrade -y
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 sudo usermod -aG docker $USER
 
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+
+
+#Esto se encarga de corregir problema con libsec
+wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.5.1-1~bpo10+1_armhf.deb 
+sudo dpkg -i libseccomp2_2.5.1-1~bpo10+1_armhf.deb
+
 
 # Instalar Docker Compose (Método recomendado por qbee.io)
 #DOCKER_COMPOSE_VERSION=2.29.2  #Ultima version disponible
@@ -29,6 +39,12 @@ if ! command -v docker-compose &> /dev/null; then
     echo "Docker Compose no se pudo instalar correctamente."
     exit 1
 fi
+
+
+#Verficacion de instalacion de tools docker
+docker --version
+docker-compose --version
+docker ps
 
 docker compose version
 
